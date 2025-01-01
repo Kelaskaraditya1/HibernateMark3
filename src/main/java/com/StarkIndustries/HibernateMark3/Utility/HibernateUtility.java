@@ -1,6 +1,8 @@
 package com.StarkIndustries.HibernateMark3.Utility;
 
 import com.StarkIndustries.HibernateMark3.Keys.Keys;
+import com.StarkIndustries.HibernateMark3.Models.Address;
+import com.StarkIndustries.HibernateMark3.Models.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -36,6 +38,11 @@ public class HibernateUtility {
             properties.put(Environment.FORMAT_SQL,true);
 
             configuration.setProperties(properties);
+
+            // Annotated Class.
+            configuration.addAnnotatedClass(Employee.class);
+            configuration.addAnnotatedClass(Address.class);
+
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory=configuration.buildSessionFactory(serviceRegistry);
         }
