@@ -1,31 +1,10 @@
-package com.StarkIndustries.HibernateMark3.Models;
-
-import org.springframework.beans.factory.parsing.EmptyReaderEventListener;
+package com.StarkIndustries.HibernateMark3.Models.OneToOne;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Employee")
 public class Employee {
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", department='" + department + '\'' +
-                ", address=" + address +
-                '}';
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +21,7 @@ public class Employee {
     private String department;
 
     @OneToOne
-        private Address address;
+    private Address address;
 
     public Employee(int id,String name,String email,String department,Address address){
         this.id=id;
@@ -101,5 +80,23 @@ public class Employee {
         this.department = department;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", department='" + department + '\'' +
+                ", address=" + address +
+                '}';
+    }
 
 }

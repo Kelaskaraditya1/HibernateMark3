@@ -1,7 +1,7 @@
 package com.StarkIndustries.HibernateMark3.Main;
 
-import com.StarkIndustries.HibernateMark3.Models.Address;
-import com.StarkIndustries.HibernateMark3.Models.Employee;
+import com.StarkIndustries.HibernateMark3.Models.OneToOne.Address;
+import com.StarkIndustries.HibernateMark3.Models.OneToOne.Employee;
 import com.StarkIndustries.HibernateMark3.Utility.HibernateUtility;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,6 +45,27 @@ public class HibernateMark3Application {
 
 //		Address address1 = session.get(Address.class,0);
 //		System.out.println(address1);
+
+
+		// Bidirectional relationship
+
+
+		Employee employee1 = new Employee();
+		employee1.setName("Mayur");
+		employee1.setEmail("mayurkhatla1@gmail.com");
+		employee1.setDepartment("Web-Developer-Advance");
+		Address address1 = new Address();
+		address1.setCountry("Russian");
+		address1.setState("Dagistan");
+		address1.setCity("Mumbai");
+		address.setEmployee(employee1);
+		employee1.setAddress(address1);
+
+//		session.save(address1);
+//		session.save(employee1);
+
+		System.out.println(session.get(Address.class,0));
+		System.out.println(session.get(Employee.class,4));
 
 		transaction.commit();
 		session.close();

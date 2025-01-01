@@ -1,9 +1,6 @@
-package com.StarkIndustries.HibernateMark3.Models;
+package com.StarkIndustries.HibernateMark3.Models.OneToOne;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Address")
@@ -21,7 +18,26 @@ public class Address {
     @Column(name = "EmployeeCity",nullable = true)
     private String city;
 
-    public Address(String country,String state,String city){
+    @OneToOne(mappedBy = "address")
+    private Employee employee;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Address(String country, String state, String city){
         this.country=country;
         this.state=state;
         this.city=city;

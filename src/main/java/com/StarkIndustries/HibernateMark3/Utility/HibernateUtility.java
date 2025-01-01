@@ -1,8 +1,8 @@
 package com.StarkIndustries.HibernateMark3.Utility;
 
 import com.StarkIndustries.HibernateMark3.Keys.Keys;
-import com.StarkIndustries.HibernateMark3.Models.Address;
-import com.StarkIndustries.HibernateMark3.Models.Employee;
+import com.StarkIndustries.HibernateMark3.Models.OneToOne.Address;
+import com.StarkIndustries.HibernateMark3.Models.OneToOne.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
