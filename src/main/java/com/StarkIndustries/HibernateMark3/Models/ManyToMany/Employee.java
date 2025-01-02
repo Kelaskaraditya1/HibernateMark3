@@ -1,26 +1,46 @@
 package com.StarkIndustries.HibernateMark3.Models.ManyToMany;
 
-import com.StarkIndustries.HibernateMark3.Models.OneToMany.Address;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Employee {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "EmployeeName",nullable = false)
+    @Column(name = "EmployeeName")
     private String name;
 
-    @Column(name = "EmployeeAddress",nullable = false)
-    @ManyToMany
-    private List<com.StarkIndustries.HibernateMark3.Models.OneToMany.Address> address;
-
-    @Column(name = "EmployeeEmail",nullable = false)
+    @Column(name = "EmployeeEmail")
     private String email;
+
+    @Column(name = "EmployeeDepartment")
+    private String department;
+
+    @Column
+    @ManyToMany(mappedBy = "address")
+    private List<Address> addressList;
+
+    public Employee(int id,String name,String email,String department,List<Address> addressList){
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.department=department;
+        this.addressList=addressList;
+    }
+
+    public Employee(String name,String email,String department,List<Address> addressList){
+        this.name=name;
+        this.email=email;
+        this.department=department;
+        this.addressList=addressList;
+    }
+
+    public Employee(){
+
+    }
 
     public int getId() {
         return id;
@@ -38,14 +58,6 @@ public class Employee {
         this.name = name;
     }
 
-    public List<com.StarkIndustries.HibernateMark3.Models.OneToMany.Address> getAddress() {
-        return address;
-    }
-
-    public void setAddress(List<com.StarkIndustries.HibernateMark3.Models.OneToMany.Address> address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -54,30 +66,19 @@ public class Employee {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address=" + address +
-                ", email='" + email + '\'' +
-                '}';
+    public String getDepartment() {
+        return department;
     }
 
-    public Employee(int id, String name, List<com.StarkIndustries.HibernateMark3.Models.OneToMany.Address> address, String email){
-        this.id=id;
-        this.name=name;
-        this.address=address;
-        this.email=email;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public Employee(String name, List<Address> address, String email){
-        this.name=name;
-        this.address=address;
-        this.email=email;
+    public List<Address> getAddressList() {
+        return addressList;
     }
 
-    public Employee(){
-
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 }

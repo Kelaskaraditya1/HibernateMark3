@@ -1,8 +1,8 @@
 package com.StarkIndustries.HibernateMark3.Utility;
 
 import com.StarkIndustries.HibernateMark3.Keys.Keys;
-import com.StarkIndustries.HibernateMark3.Models.OneToMany.Address;
-import com.StarkIndustries.HibernateMark3.Models.OneToMany.Employee;
+import com.StarkIndustries.HibernateMark3.Models.ManyToMany.Address;
+import com.StarkIndustries.HibernateMark3.Models.ManyToMany.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -47,6 +47,11 @@ public class HibernateUtility {
 //            configuration.addAnnotatedClass(Address.class);
 
 //            for One to Many Relationship:
+
+//            configuration.addAnnotatedClass(Employee.class);
+//            configuration.addAnnotatedClass(Address.class);
+
+//            Many To Many Relationship:
 
             configuration.addAnnotatedClass(Employee.class);
             configuration.addAnnotatedClass(Address.class);

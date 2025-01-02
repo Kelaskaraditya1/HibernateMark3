@@ -1,28 +1,43 @@
 package com.StarkIndustries.HibernateMark3.Models.ManyToMany;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
+    private String address;
+
+    @Column
+    @ManyToMany
+    private List<Employee> employeeList;
+
+    public Address(int id,String address,List<Employee> employeeList){
+        this.id=id;
+        this.address=address;
+        this.employeeList=employeeList;
+    }
+
+    public Address(String address,List<Employee> employeeList){
+        this.address=address;
+        this.employeeList=employeeList;
+    }
+
+    public Address(){
+
+    }
 
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", address='" + address + '\'' +
-                ", addressType='" + addressType + '\'' +
-                '}';
+        id = id;
     }
 
     public String getAddress() {
@@ -33,32 +48,11 @@ public class Address {
         this.address = address;
     }
 
-    public String getAddressType() {
-        return addressType;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setAddressType(String addressType) {
-        this.addressType = addressType;
-    }
-
-    @Column(name = "Address",nullable = false)
-    private String address;
-
-    @Column(name = "AddressType")
-    private String addressType;
-
-    public Address(int id,String address,String addressType){
-        this.id=id;
-        this.address=address;
-        this.addressType=addressType;
-    }
-
-    public Address(String address,String addressType){
-        this.address=address;
-        this.addressType=addressType;
-    }
-
-    public Address(){
-
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }
